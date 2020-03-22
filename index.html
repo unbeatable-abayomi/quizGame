@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<section class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div id="output"></div>
+        </div>
+    </div>
+</section>
+   
+
+
+
+
+    <script>
+    //   let outputDiv = document.querySelector('#outputDiv');
+        // // QUESTIONS AND IT OUT PUTS THE ANSWERS STORED IN AN ARRAY
+ let questionsAsked,question,answer,response, username;
+ let correct = [];
+ let wrong = [];
+ let answersRight = 0;
+ let answersWrong = 0;
+
+ questionsAsked = [
+     ['what month is index 9?', 'october'],
+     ['what month is index 4?',"may"],
+     ['what month is index 6?' ,'july'],
+     ['Index of 11 stands for what month?' ,"december"]
+     
+
+
+ ];
+
+ function print (message){
+     let outputDiv = document.querySelector('#output');
+     outputDiv.innerHTML =message;
+     outputDiv.style.color='green';
+ }
+
+ username = prompt(`Hello..Kindly Type in your name into the input box below`).toUpperCase();
+ alert('Before we begin, consider a calender year as an Array with its element inside as the months')
+ for ( let i = 0; i < questionsAsked.length; i++){
+     question = questionsAsked[i][0];
+     answer = questionsAsked[i][1];
+     
+     response = prompt(`Hi ${username} ${question} If you want to quit the game at anytime just type "Q" into the input box and click OK or just click cancel`).toLowerCase();
+     
+            console.log(response)
+            if(response === 'q'){
+           break;
+       } 
+     if(response === answer){
+       
+         correct.push(question)
+         answersRight += 1
+     }else if(response !== answer)
+     {
+        wrong.push(question)
+        answersWrong += 1
+     }
+    //  else if(response === "q")
+    //  {
+    //      break;
+    //  }
+ }
+
+ function arrySlipter (inputted) {
+     let htmlInsideArry = '';
+     for (let i = 0; i < inputted.length; i++){
+         htmlInsideArry +=   `${inputted[i]}`;
+
+     }
+     return htmlInsideArry;
+ }
+
+
+ let htmlOutput = '';
+     htmlOutput  += `<P>Hi ${username} below are the result of your game</p>`;
+     htmlOutput  += `<P>You got ${answersRight} questions right</p>`;
+     htmlOutput += `<h1>And this where the questions you got right</h1>`;
+     htmlOutput += arrySlipter(correct);
+     htmlOutput  += `<P>You were wrong at ${answersWrong} attemps</p>`;
+     htmlOutput += `<h1> And this were the questions you got wrong</h1>`;
+    htmlOutput += arrySlipter(wrong);
+    let number = arrySlipter(wrong)  ? "" : "none";
+
+    print(htmlOutput);
+    console.log(`Hi ${username} below are the result of your game`)
+    console.log(`You got ${answersRight} questions right`)
+    console.log(`And this where the questions you got right`)
+    console.log(arrySlipter(correct))
+    console.log(`You were wrong at ${answersWrong} attemps`)
+    console.log(`And this were the questions you got wrong`)
+    console.log(arrySlipter(wrong),number)
+    </script>
+</body>
+</html>
